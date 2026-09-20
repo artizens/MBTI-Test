@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "outDir": ".test-build",
+    "rootDir": "."
+  },
+  "include": [
+    "src/lib/assessment.ts",
+    "tests/scoring.test.ts",
+    "scripts/validate.ts"
+  ]
+}
