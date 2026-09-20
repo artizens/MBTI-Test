@@ -53,15 +53,15 @@ test('답변 변경은 기존 답변을 대체하며 점수를 재계산', () =>
 test('세션 손상과 이전 버전은 복원하지 않음', () => {
   assert.equal(parseSession('not json'), null);
   assert.equal(
-    parseSession(JSON.stringify({ version: 0, index: 0, answers: {} })),
+    parseSession(JSON.stringify({ version: 1, index: 0, answers: {} })),
     null,
   );
   assert.equal(
-    parseSession(JSON.stringify({ version: 1, index: 99, answers: {} })),
+    parseSession(JSON.stringify({ version: 2, index: 99, answers: {} })),
     null,
   );
   assert.deepEqual(
-    parseSession(JSON.stringify({ version: 1, index: 0, answers: {} })),
-    { version: 1, index: 0, answers: {} },
+    parseSession(JSON.stringify({ version: 2, index: 0, answers: {} })),
+    { version: 2, index: 0, answers: {} },
   );
 });

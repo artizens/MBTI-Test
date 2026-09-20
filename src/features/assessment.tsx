@@ -51,7 +51,7 @@ export default function Assessment() {
     setReady(true);
   }, []);
   useEffect(() => {
-    if (ready && !saveSession({ version: 1, index, answers }))
+    if (ready && !saveSession({ version: 2, index, answers }))
       setNotice(
         '새로고침하면 답변이 초기화될 수 있어요. 이 화면에서 계속해 주세요.',
       );

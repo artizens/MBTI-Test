@@ -2,10 +2,10 @@ import questionData from '../content/questions.json';
 import profiles from '../content/personality-types.json';
 export type Trait = 'E' | 'I' | 'S' | 'N' | 'T' | 'F' | 'J' | 'P';
 export type Answers = Record<string, string>;
-export type Session = { version: 1; index: number; answers: Answers };
+export type Session = { version: 2; index: number; answers: Answers };
 export const questions = questionData;
 export const personalityTypes = profiles;
-export const SESSION_KEY = 'gyeol:assessment:v1';
+export const SESSION_KEY = 'gyeol:assessment:v2';
 export const AXES = ['EI', 'SN', 'TF', 'JP'] as const;
 export function validateAnswers(value: unknown): value is Answers {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
@@ -45,14 +45,14 @@ export function parseSession(raw: string | null): Session | null {
     if (!s || typeof s !== 'object') return null;
     const v = s as Partial<Session>;
     if (
-      v.version !== 1 ||
+      v.version !== 2 ||
       !Number.isInteger(v.index) ||
       v.index! < 0 ||
       v.index! > 11 ||
       !validateAnswers(v.answers)
     )
       return null;
-    return { version: 1, index: v.index!, answers: v.answers };
+    return { version: 2, index: v.index!, answers: v.answers };
   } catch {
     return null;
   }
